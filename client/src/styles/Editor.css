@@ -1,0 +1,33 @@
+.editor {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  background-color: black;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.runner {
+  width: 100%;
+  height: 40%;
+}
+.editor-setup {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.output-top {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+.output {
+  border: 1px solid black;
+  height: 80%;
+  margin-top: 10px;
+}

@@ -1,0 +1,9 @@
+.show {
+  height: 1em;
+  background-color: rgb(198, 198, 198);
+  color: rgb(0, 0, 0);
+  font-size: larger;
+  font-weight: bolder;
+  border-radius: 10px;
+  padding: 10px;
+}
