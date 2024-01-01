@@ -9,6 +9,9 @@ app.listen(port, () => {
   console.log(`listing on port : ${port}`);
 });
 
+app.post("/runcode", (req, res) => {
+  console.log(req.body);
+});
 app.get("/test", (req, res) => {
   const testStrings = [
     "Hello, world!",

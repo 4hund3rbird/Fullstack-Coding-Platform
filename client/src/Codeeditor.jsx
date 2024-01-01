@@ -1,4 +1,5 @@
 import Editor from "@monaco-editor/react";
+import axios from "axios";
 import "./styles/Editor.css";
 import Coderunner from "./Coderunner";
 import { useState, useEffect } from "react";
@@ -7,8 +8,21 @@ const Codeeditor = ({ handleChangeCode, code }) => {
   const [darkmode, setdarkmode] = useState(false);
   const [language, setlanguage] = useState("python");
   const [iscoderunning, setiscoderunning] = useState(false);
-
   const [output, setoutput] = useState("");
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/test").then((res) => {
+      console.log(res.data);
+    });
+  }, []);
+
+  const runcode = () => {
+    setiscoderunning(true);
+    axios.post("https://localhost:3000/runcode", { code: code }).then((res) => {
+      console.log(res);
+      setiscoderunning(false);
+    });
+  };
 
   return (
     <div className="editor-setup">
@@ -48,7 +62,7 @@ const Codeeditor = ({ handleChangeCode, code }) => {
         value={code}
       />
       <div className="runner">
-        <Coderunner runcode={setiscoderunning} />
+        <Coderunner runcode={runcode} />
       </div>
     </div>
   );

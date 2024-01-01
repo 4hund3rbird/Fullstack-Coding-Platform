@@ -5,7 +5,7 @@ const Coderunner = ({ runcode }) => {
         <button>Run Tests</button>
         <button
           onClick={() => {
-            runcode(true);
+            runcode();
           }}
         >
           Run Code
