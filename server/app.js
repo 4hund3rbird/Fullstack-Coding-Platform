@@ -9,7 +9,7 @@ app.listen(port, () => {
   console.log(`listing on port : ${port}`);
 });
 
-app.post("/run", (req, res) => {
+app.post("/runcode", (req, res) => {
   console.log(req.body);
 });
 app.get("/test", (req, res) => {
