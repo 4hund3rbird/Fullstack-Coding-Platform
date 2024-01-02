@@ -2,8 +2,8 @@ import "./styles/Problem.css";
 const Problem = () => {
   return (
     <div>
-      <h3>Problem Statement:</h3>
-      <div className="problemStatement">
+      <h3 className="title">Problem Statement:</h3>
+      <div className="problemStatement show">
         Here is a sample line of code that can be executed in Python:
         print("Hello, World!") You can just as easily store a string as a
         variable and then print it to stdout: my_string = "Hello, World!"
@@ -12,7 +12,7 @@ const Problem = () => {
         read any input in this challenge. Output Format Print Hello, World! to
         stdout. Sample Output 0 Hello, World!
       </div>
-      <h3>Sample Output:</h3>
+      <h3 className="title">Sample Output:</h3>
       <div className="show">Hello, World!</div>
     </div>
   );

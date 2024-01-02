@@ -18,8 +18,9 @@ const Codeeditor = ({ handleChangeCode, code }) => {
 
   const runcode = () => {
     setiscoderunning(true);
-    axios.post("https://localhost:3000/runcode", { code: code }).then((res) => {
-      console.log(res);
+    axios.post("http://localhost:3000/runcode", { code: code }).then((res) => {
+      const { output } = res.data;
+      setoutput(output);
       setiscoderunning(false);
     });
   };
@@ -61,8 +62,9 @@ const Codeeditor = ({ handleChangeCode, code }) => {
         theme={darkmode && "vs-dark"}
         value={code}
       />
+
       <div className="runner">
-        <Coderunner runcode={runcode} />
+        <Coderunner output={output} runcode={runcode} />
       </div>
     </div>
   );

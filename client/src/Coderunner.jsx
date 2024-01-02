@@ -1,4 +1,4 @@
-const Coderunner = ({ runcode }) => {
+const Coderunner = ({ runcode, output }) => {
   return (
     <>
       <div className="output-top">
@@ -11,7 +11,7 @@ const Coderunner = ({ runcode }) => {
           Run Code
         </button>
       </div>
-      <div className="output"></div>
+      <div className="output">{output}</div>
     </>
   );
 };

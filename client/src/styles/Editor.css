@@ -4,6 +4,7 @@
   border: 1px solid black;
   background-color: black;
 }
+
 .top {
   display: flex;
   justify-content: space-between;
@@ -27,7 +28,20 @@
   gap: 10px;
 }
 .output {
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 10px;
   height: 80%;
   margin-top: 10px;
+  padding: 20px;
+  background-color: rgb(52, 52, 52);
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marqueeAnimation 15s linear infinite;
+  padding: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
