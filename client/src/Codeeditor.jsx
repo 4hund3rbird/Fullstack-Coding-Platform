@@ -6,9 +6,17 @@ import { useState, useEffect } from "react";
 
 const Codeeditor = ({ handleChangeCode, code }) => {
   const [darkmode, setdarkmode] = useState(false);
-  const [language, setlanguage] = useState("python");
+  const [language, setlanguage] = useState("javascript");
   const [iscoderunning, setiscoderunning] = useState(false);
   const [output, setoutput] = useState("");
+
+  const templates = {
+    python: 'print("Hello World")',
+    javascript: 'console.log("Hello world");',
+    cpp: '#include<iostream>\nusing namespace std;\nint main(){\n\ncout<<"Hello world"<<endl;  \nreturn 0;}',
+    c: '#include<stdio.h>\nint main(){\nprintf("Hello world");}',
+    java: 'public class temp\n{\n  public static void main(String[] args) {\n    System.out.println("Hello World!");\n}\n}',
+  };
 
   useEffect(() => {
     axios.get("http://localhost:3000/test").then((res) => {
@@ -18,11 +26,14 @@ const Codeeditor = ({ handleChangeCode, code }) => {
 
   const runcode = () => {
     setiscoderunning(true);
-    axios.post("http://localhost:3000/runcode", { code: code }).then((res) => {
-      const { output } = res.data;
-      setoutput(output);
-      setiscoderunning(false);
-    });
+    axios
+      .post("http://localhost:3000/runcode", { code: code, language: language })
+      .then((res) => {
+        const { output } = res.data;
+        console.log(output);
+        setoutput(output);
+        setiscoderunning(false);
+      });
   };
 
   return (
@@ -40,6 +51,8 @@ const Codeeditor = ({ handleChangeCode, code }) => {
           onChange={(e) => {
             console.log(e.target.value);
             setlanguage(e.target.value);
+            setoutput("");
+            handleChangeCode(templates[e.target.value]);
           }}
         >
           <option value="python">python</option>
@@ -54,7 +67,7 @@ const Codeeditor = ({ handleChangeCode, code }) => {
         height={"50%"}
         className={`editor `}
         defaultLanguage={language}
-        defaultValue="// some comment"
+        defaultValue={code}
         onChange={(e) => {
           console.log(e);
           handleChangeCode(e);
@@ -64,7 +77,10 @@ const Codeeditor = ({ handleChangeCode, code }) => {
       />
 
       <div className="runner">
-        <Coderunner output={output} runcode={runcode} />
+        <Coderunner
+          output={iscoderunning ? "Loading...." : output}
+          runcode={runcode}
+        />
       </div>
     </div>
   );

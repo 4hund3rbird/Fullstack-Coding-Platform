@@ -4,7 +4,7 @@ import Problem from "./Problem";
 import "./styles/App.css";
 
 const App = () => {
-  const [code, setCode] = useState('print("hello world")');
+  const [code, setCode] = useState('console.log("hello world")');
   const handleChangeCode = (code) => {
     // console.log(code);
     setCode(code);

@@ -37,6 +37,9 @@
   font-size: x-large;
   font-weight: bold;
   color: white;
+  overflow-y: scroll;
+  white-space: pre-line;
+  scroll-behavior: smooth;
 }
 
 .marquee {
