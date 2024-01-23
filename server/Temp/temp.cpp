@@ -1,8 +1,9 @@
 #include<iostream>
 using namespace std;
 int main(){
-for (int i=0;i<30;i++){
-cout<<i<<" -    Hello world"<<endl;  
 
+cout<<"Hello how are you "<<endl;  
+for(int i=0;i<20;i++){
+    cout<<i<<" "<<" you are beautiful"<<endl;
 }
 return 0;}

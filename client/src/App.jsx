@@ -20,6 +20,7 @@ const App = () => {
         <li>Que.4</li>
         <li>Que.5</li>
         <h3 className="title">Test Time</h3>
+        <div className="show">00:30</div>
       </div>
       <div className="container left">
         <Problem />
