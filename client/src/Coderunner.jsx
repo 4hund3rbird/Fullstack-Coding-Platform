@@ -2,11 +2,12 @@ const Coderunner = ({ runcode, output }) => {
   return (
     <>
       <div className="output-top">
-        <button>Run Tests</button>
+        <button className="buttons_design">Run Tests</button>
         <button
           onClick={() => {
             runcode();
           }}
+          className="buttons_design"
         >
           Run Code
         </button>

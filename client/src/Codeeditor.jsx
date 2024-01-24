@@ -43,6 +43,7 @@ const Codeeditor = ({ handleChangeCode, code }) => {
           onClick={() => {
             setdarkmode(!darkmode);
           }}
+          className="buttons_design"
         >
           DarkMode
         </button>
@@ -66,7 +67,7 @@ const Codeeditor = ({ handleChangeCode, code }) => {
       <Editor
         height={"50%"}
         className={`editor `}
-        defaultLanguage={language}
+        defaultLanguage={""}
         defaultValue={code}
         onChange={(e) => {
           console.log(e);
@@ -74,6 +75,7 @@ const Codeeditor = ({ handleChangeCode, code }) => {
         }}
         theme={darkmode && "vs-dark"}
         value={code}
+        options={{ language: " " }}
       />
 
       <div className="runner">

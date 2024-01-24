@@ -1,6 +1,6 @@
 .show {
   height: fit-content;
-  background-color: rgb(198, 198, 198);
+  background-color: var(--text-background-color);
   color: rgb(0, 0, 0);
   border: 1px solid white;
   /* font-size: large; */
@@ -12,7 +12,7 @@
 .title {
   color: white;
   text-shadow: 2px 2px 2px black;
-  background-color: #1318664e;
+  background-color: var(--foreground-color);
   padding: 15px;
   /* border: 1px solid #555; */
   border-radius: 10px;
