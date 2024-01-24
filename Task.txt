@@ -1,3 +1,5 @@
 1. Color should be white,grey and blue.
 2. There should be a submit button.
 3. Editor should have no autofill.
+4. User should be able to login.
+5. Database should be configured.
