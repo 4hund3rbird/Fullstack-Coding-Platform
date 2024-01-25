@@ -1,4 +1,4 @@
-.editor {
+/* .editor {
   height: 100%;
   width: 100%;
   border: 1px solid black;
@@ -27,24 +27,11 @@
   justify-content: end;
   gap: 10px;
 }
-.output {
-  border: 2px solid black;
-  border-radius: 10px;
-  height: 80%;
-  margin-top: 10px;
-  padding: 20px;
-  background-color: rgb(52, 52, 52);
-  font-size: x-large;
-  font-weight: bold;
-  color: white;
-  overflow-y: scroll;
-  white-space: pre-line;
-  scroll-behavior: smooth;
-}
+
 
 .marquee {
   white-space: nowrap;
   animation: marqueeAnimation 15s linear infinite;
   padding: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
+} */

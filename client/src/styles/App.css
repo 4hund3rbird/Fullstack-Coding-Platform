@@ -1,22 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
-* {
-  font-family: "Roboto", sans-serif;
-}
-html {
-  background-color: var(--background-light);
-}
-:root {
-  --background-light: #071952;
-  --background-color: #4b527e;
-  --foreground-color: #7c81ad;
-  --buttons-color: #4fa120;
-  --text-background-color: #e5c3a6;
-}
+@import url("https://fonts.googleapis.com/css2?family=Scada&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Scada&display=swap");
 
+:root {
+  --background-light: #bbbec2;
+  --background-color: #dcdcdceb;
+  --foreground-color: #00ade7;
+  --buttons-color: #00ade7;
+  --text-background-color: #b9b9b9;
+  --background-dark: #656565;
+  --background-color-dark: #2c2c2c93;
+  --foreground-color-dark: #20009f;
+  --buttons-color-dark: #20009f;
+}
+.output {
+  white-space: pre-line;
+}
+/* 
 .main-container {
   display: flex;
   height: 90vh;
-  /* background-color: black; */
+  background-color: black;
   justify-content: center;
 }
 
@@ -26,10 +30,11 @@ html {
   padding-right: 0px;
   text-align: center;
 }
-/* li {
+
+li {
   display: inline-block;
   margin-right: 20px;
-} */
+}
 
 .navbar.container li {
   list-style: none;
@@ -52,16 +57,24 @@ html {
   width: 40%;
   height: 100%;
   padding: 30px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   background-color: var(--background-color);
   margin: 2px;
   border-radius: 10px;
-  /* box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.636); */
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.636);
+}
+.container-dark {
+  background-color: var(--background-color-dark);
 }
 
 .buttons_design {
   padding: 5px;
-  border-radius: 10px;
   color: white;
   background-color: var(--buttons-color);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
 }
+.buttons-dark {
+  background-color: var(--buttons-color-dark);
+} */

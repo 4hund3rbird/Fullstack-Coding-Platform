@@ -2,10 +2,16 @@ import Editor from "@monaco-editor/react";
 import axios from "axios";
 import "./styles/Editor.css";
 import Coderunner from "./Coderunner";
+
 import { useState, useEffect } from "react";
 
-const Codeeditor = ({ handleChangeCode, code }) => {
-  const [darkmode, setdarkmode] = useState(false);
+const Codeeditor = ({
+  handleChangeCode,
+  code,
+  darkmode,
+  setdarkmode,
+  accent,
+}) => {
   const [language, setlanguage] = useState("javascript");
   const [iscoderunning, setiscoderunning] = useState(false);
   const [output, setoutput] = useState("");
@@ -37,49 +43,64 @@ const Codeeditor = ({ handleChangeCode, code }) => {
   };
 
   return (
-    <div className="editor-setup">
-      <div className="top">
-        <button
-          onClick={() => {
-            setdarkmode(!darkmode);
-          }}
-          className="buttons_design"
-        >
-          DarkMode
-        </button>
-        <select
-          value={language}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setlanguage(e.target.value);
-            setoutput("");
-            handleChangeCode(templates[e.target.value]);
-          }}
-        >
-          <option value="python">python</option>
-          <option value="cpp">c++</option>
-          <option value="c">c</option>
-          <option value="javascript">javascript</option>
-          <option value="java">java</option>
-        </select>
+    <div className="flex-col">
+      <div className="h-[50vh] overflow-hidden">
+        <div className="flex justify-between my-1">
+          <button
+            onClick={() => {
+              setdarkmode(!darkmode);
+            }}
+            className={"rounded p-2 text-xs font-bold" + accent}
+          >
+            {!darkmode ? "DarkMode" : "LightMode"}
+          </button>
+          <button
+            className={`rounded-lg py-2 px-6 text-xs font-bold cursor-default border-2 ${
+              darkmode
+                ? "bg-slate-600 text-white border-emerald-400"
+                : "bg-slate-200 text-black border-cyan-400"
+            }`}
+          >
+            30 : 00
+          </button>
+          <select
+            className={
+              " rounded p-2 text-xs  font-bold cursor-pointer" + accent
+            }
+            value={language}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setlanguage(e.target.value);
+              setoutput("");
+              handleChangeCode(templates[e.target.value]);
+            }}
+          >
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="c">C</option>
+            <option value="javascript">Javascript</option>
+            <option value="java">Java</option>
+          </select>
+        </div>
+        <div className="h-full my-2">
+          <Editor
+            height={"100%"}
+            defaultLanguage={""}
+            defaultValue={code}
+            onChange={(e) => {
+              console.log(e);
+              handleChangeCode(e);
+            }}
+            theme={darkmode && "vs-dark"}
+            value={code}
+            options={{ language: " ", fontSize: "15px" }}
+          />
+        </div>
       </div>
-
-      <Editor
-        height={"50%"}
-        className={`editor `}
-        defaultLanguage={""}
-        defaultValue={code}
-        onChange={(e) => {
-          console.log(e);
-          handleChangeCode(e);
-        }}
-        theme={darkmode && "vs-dark"}
-        value={code}
-        options={{ language: " " }}
-      />
 
       <div className="runner">
         <Coderunner
+          accent={accent}
           output={iscoderunning ? "Loading...." : output}
           runcode={runcode}
         />
