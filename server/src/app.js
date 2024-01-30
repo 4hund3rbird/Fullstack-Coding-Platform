@@ -56,15 +56,23 @@ app.post("/runcode", (req, res) => {
   // console.log("Received data:", code, language);
   if (language == "python" || language == "javascript") {
     exec(command + filePath, (error, stdout, stderr) => {
-      res.send({ output: stdout });
+      if (error) {
+        res.send({ output: stderr });
+      } else {
+        res.send({ output: stdout });
+      }
     });
   } else if (language == "cpp" || language == "c") {
     exec(command + filePath + " -o " + filepath(folderPath, "run"), (error) => {
       if (error) {
-        console.log(error);
+        res.send({ output: stderr });
       } else {
         exec(filepath(folderPath, "run"), (error, stdout, stderr) => {
-          res.send({ output: stdout });
+          if (error) {
+            res.send({ output: stderr });
+          } else {
+            res.send({ output: stdout });
+          }
         });
       }
     });
@@ -72,7 +80,7 @@ app.post("/runcode", (req, res) => {
     exec(command + filePath, () => {
       exec("java -cp ./Temp/ temp", (error, stdout) => {
         if (error) {
-          console.log(error);
+          res.send({ output: stderr });
         } else {
           res.send({ output: stdout });
         }
