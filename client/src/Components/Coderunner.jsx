@@ -1,4 +1,4 @@
-const Coderunner = ({ runcode, output, accent }) => {
+const Coderunner = ({ runcode, output, accent, handlesubmit }) => {
   return (
     <div className="h-[50vh] overflow-hidden">
       <div className="flex justify-end gap-4 my-2">
@@ -13,7 +13,12 @@ const Coderunner = ({ runcode, output, accent }) => {
         >
           Run Code
         </button>
-        <button className={"rounded p-2 text-xs font-bold" + accent}>
+        <button
+          className={"rounded p-2 text-xs font-bold" + accent}
+          onClick={() => {
+            handlesubmit();
+          }}
+        >
           Submit
         </button>
       </div>

@@ -1,1 +1,9 @@
-import mongoose from "./mongoose";
+const schema = {
+  username: "",
+  email: "",
+  testcase: false,
+  code: "",
+  output: "",
+};
+
+export { schema };

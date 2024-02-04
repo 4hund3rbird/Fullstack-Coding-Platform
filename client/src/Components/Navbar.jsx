@@ -1,4 +1,4 @@
-const Navbar = ({ darkmode, accent, questions, qid, setqid, setque }) => {
+const Navbar = ({ darkmode, questions, qid, setqid, setque }) => {
   const selected_clr = `${
     darkmode ? " border-emerald-400" : " border-cyan-400"
   }`;

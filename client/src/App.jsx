@@ -11,6 +11,7 @@ const App = () => {
   const [code, setCode] = useState('print("Hello world")');
   const [darkmode, setdarkmode] = useState(false);
   const [loggedin, isloggedin] = useState(false);
+  const [code_output, setcodeoutput] = useState("");
 
   const [data, setdata] = useState({ fullname: "", email: "" });
 
@@ -24,6 +25,20 @@ const App = () => {
       setquestions(res.data);
     });
   }, []);
+
+  const handlesubmit = () => {
+    axios
+      .post("http://localhost:3000/submit", {
+        username: data.fullname,
+        email: data.email,
+        tescase: true,
+        code: code,
+        output: code_output,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   const handledata = (fullname, email) => {
     setdata(() => {
@@ -70,11 +85,13 @@ const App = () => {
       </div>
       <div className={innerclass}>
         <Codeeditor
+          setcodeoutput={setcodeoutput}
           accent={accent_clr}
           code={code}
           handleChangeCode={handleChangeCode}
           darkmode={darkmode}
           setdarkmode={setdarkmode}
+          handlesubmit={handlesubmit}
         />
       </div>
     </div>

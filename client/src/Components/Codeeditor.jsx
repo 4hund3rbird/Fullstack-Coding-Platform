@@ -3,7 +3,7 @@ import axios from "axios";
 import "../styles/Editor.css";
 import Coderunner from "./Coderunner";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Codeeditor = ({
   handleChangeCode,
@@ -11,6 +11,8 @@ const Codeeditor = ({
   darkmode,
   setdarkmode,
   accent,
+  setcodeoutput,
+  handlesubmit,
 }) => {
   const [language, setlanguage] = useState("python");
   const [iscoderunning, setiscoderunning] = useState(false);
@@ -36,6 +38,7 @@ const Codeeditor = ({
         const { output } = res.data;
         console.log(output);
         setoutput(output);
+        setcodeoutput(output);
         setiscoderunning(false);
       });
   };
@@ -100,6 +103,7 @@ const Codeeditor = ({
           accent={accent}
           output={iscoderunning ? "Loading...." : output}
           runcode={runcode}
+          handlesubmit={handlesubmit}
         />
       </div>
     </div>

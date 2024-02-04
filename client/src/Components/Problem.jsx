@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import "../styles/Problem.css";
-import axios from "axios";
 
 const Problem = ({ darkmode, question }) => {
   const titles = `shadow-md p-3 rounded-md underline font-bold text-lg  h-[7vh] border-l-4 border-r-4 ${

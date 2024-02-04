@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import questions from "./questions.js";
-
+import { schema } from "./dbconnection.js";
 import bodyParser from "body-parser";
 const port = process.env.PORT || 3000;
 import { exec } from "child_process";
@@ -32,6 +32,17 @@ app.get(`/random_questions/:no`, (req, res) => {
     }
   }
   res.send(random_ques);
+});
+
+app.post("/submit", (req, res) => {
+  const { username, email, testcase, code, output } = req.body;
+  schema.username = username;
+  schema.email = email;
+  schema.testcase = testcase;
+  schema.code = code;
+  schema.output = output;
+
+  console.log(schema);
 });
 
 app.post("/runcode", (req, res) => {
