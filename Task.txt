@@ -1,6 +1,7 @@
 1. Color should be white,grey and blue ✅.
 2. Editor should have no autofill ✅.
-3. React router should be configured.
-4. User should be able to login.
+3. React router should be configured.❌ 
+4. User should be able to login.✅ 
+5. Run testcases on the code.
 5. Database should be configured.
 6. There should be a submit button with functionality.

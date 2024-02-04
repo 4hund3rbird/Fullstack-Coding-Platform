@@ -1,6 +1,6 @@
 import Editor from "@monaco-editor/react";
 import axios from "axios";
-import "./styles/Editor.css";
+import "../styles/Editor.css";
 import Coderunner from "./Coderunner";
 
 import { useState, useEffect } from "react";
@@ -12,10 +12,11 @@ const Codeeditor = ({
   setdarkmode,
   accent,
 }) => {
-  const [language, setlanguage] = useState("javascript");
+  const [language, setlanguage] = useState("python");
   const [iscoderunning, setiscoderunning] = useState(false);
   const [output, setoutput] = useState("");
-
+  const port = "3000";
+  const IP = "";
   const templates = {
     python: 'print("Hello World")',
     javascript: 'console.log("Hello world");',
@@ -24,16 +25,13 @@ const Codeeditor = ({
     java: 'public class temp\n{\n  public static void main(String[] args) {\n    System.out.println("Hello World!");\n}\n}',
   };
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/test").then((res) => {
-      console.log(res.data);
-    });
-  }, []);
-
   const runcode = () => {
     setiscoderunning(true);
     axios
-      .post("http://localhost:3000/runcode", { code: code, language: language })
+      .post(`http://${IP ? IP : "localhost"}:${port}/runcode`, {
+        code: code,
+        language: language,
+      })
       .then((res) => {
         const { output } = res.data;
         console.log(output);
@@ -54,18 +52,17 @@ const Codeeditor = ({
           >
             {!darkmode ? "DarkMode" : "LightMode"}
           </button>
-          <button
+          {/* <button
             className={`rounded-lg py-2 px-6 text-xs font-bold cursor-default border-2 ${
               darkmode
                 ? "bg-slate-600 text-white border-emerald-400"
                 : "bg-slate-200 text-black border-cyan-400"
             }`}
-          >
-            30 : 00
-          </button>
+          >{`${Math.floor(time_sec / 60)} : ${time_sec / 30}`}</button> */}
           <select
             className={
-              " rounded p-2 text-xs  font-bold cursor-pointer" + accent
+              "language_select rounded p-2 text-xs  font-bold cursor-pointer" +
+              accent
             }
             value={language}
             onChange={(e) => {

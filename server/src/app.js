@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import questions from "./questions.js";
 
 import bodyParser from "body-parser";
 const port = process.env.PORT || 3000;
@@ -14,6 +15,23 @@ app.use(bodyParser.json());
 
 app.listen(port, () => {
   console.log(`listing on port : ${port}`);
+});
+
+app.get("/questions", (req, res) => {
+  res.send(questions);
+});
+
+app.get(`/random_questions/:no`, (req, res) => {
+  const no = parseInt(req.params.no);
+  let random_ques = [];
+  while (random_ques.length < no) {
+    let random_question =
+      questions[Math.floor(Math.random() * questions.length)];
+    if (random_ques.includes(random_question) == false) {
+      random_ques.push(random_question);
+    }
+  }
+  res.send(random_ques);
 });
 
 app.post("/runcode", (req, res) => {
@@ -63,22 +81,25 @@ app.post("/runcode", (req, res) => {
       }
     });
   } else if (language == "cpp" || language == "c") {
-    exec(command + filePath + " -o " + filepath(folderPath, "run"), (error) => {
-      if (error) {
-        res.send({ output: stderr });
-      } else {
-        exec(filepath(folderPath, "run"), (error, stdout, stderr) => {
-          if (error) {
-            res.send({ output: stderr });
-          } else {
-            res.send({ output: stdout });
-          }
-        });
+    exec(
+      command + filePath + " -o " + filepath(folderPath, "run"),
+      (error, stderr) => {
+        if (error) {
+          res.send({ output: stderr });
+        } else {
+          exec(filepath(folderPath, "run"), (error, stdout, stderr) => {
+            if (error) {
+              res.send({ output: stderr });
+            } else {
+              res.send({ output: stdout });
+            }
+          });
+        }
       }
-    });
+    );
   } else if (language == "java") {
     exec(command + filePath, () => {
-      exec("java -cp ./Temp/ temp", (error, stdout) => {
+      exec("java -cp ./Temp/ temp", (error, stdout, stderr) => {
         if (error) {
           res.send({ output: stderr });
         } else {
@@ -87,32 +108,4 @@ app.post("/runcode", (req, res) => {
       });
     });
   }
-});
-
-app.get("/test", (req, res) => {
-  const testStrings = [
-    "Hello, world!",
-    "This is a test string.",
-    "12345",
-    "Testing 1, 2, 3.",
-    "Lorem ipsum dolor sit amet.",
-    "🚀 Testing emojis! 😊🎉",
-    "Coding is fun!",
-    "Array of test strings.",
-    "Node.js is awesome!",
-    "Testing JavaScript code.",
-    "OpenAI GPT-3 is amazing!",
-    "Programming is an art.",
-    "2023-01-01",
-    "Random test string.",
-    "Let's code together!",
-    "123abc",
-    "Testing special characters: !@#$%^&*()_+-=[]{}|;':,.<>/?",
-    "Strings and more strings.",
-    "Check if this works!",
-    "The quick brown fox jumps over the lazy dog.",
-    "Testing string manipulation.",
-    "End of test strings.",
-  ];
-  res.send(testStrings);
 });
