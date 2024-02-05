@@ -1,6 +1,2 @@
-#include<iostream>
-using namespace std;
-int main(){
-
-cout<<"Hello world"<<endl;  
-return 0;}
+#Write code for question no 3
+print(3)

@@ -6,34 +6,74 @@ import "./styles/App.css";
 import "./index.css";
 import Navbar from "./Components/Navbar";
 import Login from "./Login";
+import Submitscreen from "./Components/Submitscreen";
 
 const App = () => {
-  const [code, setCode] = useState('print("Hello world")');
-  const [darkmode, setdarkmode] = useState(false);
-  const [loggedin, isloggedin] = useState(false);
-  const [code_output, setcodeoutput] = useState("");
+  const no_of_questions = 3;
+  const [code, setCode] = useState(function () {
+    return Array.from({ length: no_of_questions }, (e, i) => ({
+      id: i,
+      question: "",
+      title: "",
+      code: `#Write code for question no ${i + 1}`,
+      output: "",
+      language: "python",
+    }));
+  });
+
+  console.log(code);
+  const [darkmode, setdarkmode] = useState(function () {
+    return JSON.parse(localStorage.getItem("darkmode"));
+  });
+
+  const [loggedin, isloggedin] = useState(function () {
+    return JSON.parse(localStorage.getItem("login"));
+  });
 
   const [data, setdata] = useState({ fullname: "", email: "" });
-
+  const [submit, setsubmit] = useState(function () {
+    return JSON.parse(localStorage.getItem("submit"));
+  });
   const [qid, setqid] = useState(0);
   const [questions, setquestions] = useState([]);
   const [question, setquestion] = useState({});
 
   useEffect(() => {
-    axios.get("http://localhost:3000/random_questions/3").then((res) => {
-      setquestion(res.data[qid]);
-      setquestions(res.data);
-    });
+    axios
+      .get(`http://localhost:3000/random_questions/${no_of_questions}`)
+      .then((res) => {
+        setquestions(res.data);
+        setquestion(res.data[0]);
+        console.log(res.data);
+        setCode((l) => {
+          return l.map((e, i) => {
+            return {
+              ...e,
+              question: res.data[i].question,
+              title: res.data[i].title,
+            };
+          });
+        });
+      });
   }, []);
 
+  useEffect(() => {
+    setquestion[questions[qid]];
+  }, [qid, questions]);
+
+  useEffect(() => {
+    localStorage.setItem("darkmode", JSON.stringify(darkmode));
+  }, [darkmode]);
+
   const handlesubmit = () => {
+    setsubmit(true);
+    localStorage.setItem("submit", JSON.stringify(true));
     axios
       .post("http://localhost:3000/submit", {
         username: data.fullname,
         email: data.email,
         tescase: true,
         code: code,
-        output: code_output,
       })
       .then((res) => {
         console.log(res);
@@ -46,13 +86,41 @@ const App = () => {
     });
   };
 
-  const handleChangeCode = (code) => {
-    // console.log(code);
-    setCode(code);
+  const handleChangeCode = (code, id, output) => {
+    setCode((codelist) => {
+      return codelist.map((e, i) => {
+        if (i === id) {
+          return {
+            ...e,
+            id: i,
+            code: code,
+            output: output,
+          };
+        } else {
+          return e;
+        }
+      });
+    });
+  };
+
+  const handlelanguagechange = (language, id) => {
+    setCode((codelist) => {
+      return codelist.map((e, i) => {
+        if (i === id) {
+          return {
+            ...e,
+            language: language,
+          };
+        } else {
+          return e;
+        }
+      });
+    });
   };
 
   const handlelogin = () => {
     isloggedin(!loggedin);
+    localStorage.setItem("login", JSON.stringify(!loggedin));
   };
   const accent_clr = `${darkmode ? " bg-emerald-400" : " bg-cyan-400"}`;
   const innerclass = `w-[50%] h-full p-4 rounded-md overflow-hidden ${
@@ -65,6 +133,7 @@ const App = () => {
       }`}
     >
       {!loggedin && <Login handlelogin={handlelogin} handledata={handledata} />}
+      {submit && <Submitscreen darkmode={darkmode} />}
 
       <div
         className={`w-[7%] h-full p-3 py-4 rounded-md overflow-hidden ${
@@ -85,13 +154,16 @@ const App = () => {
       </div>
       <div className={innerclass}>
         <Codeeditor
-          setcodeoutput={setcodeoutput}
           accent={accent_clr}
-          code={code}
+          code={code[qid].code}
+          prevoutput={code[qid].output}
+          id={qid}
           handleChangeCode={handleChangeCode}
           darkmode={darkmode}
           setdarkmode={setdarkmode}
           handlesubmit={handlesubmit}
+          prevlanguage={code[qid].language}
+          changelanguage={handlelanguagechange}
         />
       </div>
     </div>

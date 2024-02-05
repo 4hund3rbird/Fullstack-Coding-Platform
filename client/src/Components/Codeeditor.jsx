@@ -11,34 +11,36 @@ const Codeeditor = ({
   darkmode,
   setdarkmode,
   accent,
-  setcodeoutput,
+  changelanguage,
   handlesubmit,
+  id,
+  prevoutput,
+  prevlanguage,
 }) => {
-  const [language, setlanguage] = useState("python");
   const [iscoderunning, setiscoderunning] = useState(false);
-  const [output, setoutput] = useState("");
+
   const port = "3000";
   const IP = "";
-  const templates = {
-    python: 'print("Hello World")',
-    javascript: 'console.log("Hello world");',
-    cpp: '#include<iostream>\nusing namespace std;\nint main(){\n\ncout<<"Hello world"<<endl;  \nreturn 0;}',
-    c: '#include<stdio.h>\nint main(){\nprintf("Hello world");}',
-    java: 'public class temp\n{\n  public static void main(String[] args) {\n    System.out.println("Hello World!");\n}\n}',
-  };
+  // const templates = {
+  //   python: 'print("Hello World")',
+  //   javascript: 'console.log("Hello world");',
+  //   cpp: '#include<iostream>\nusing namespace std;\nint main(){\n\ncout<<"Hello world"<<endl;  \nreturn 0;}',
+  //   c: '#include<stdio.h>\nint main(){\nprintf("Hello world");}',
+  //   java: 'public class temp\n{\n  public static void main(String[] args) {\n    System.out.println("Hello World!");\n}\n}',
+  // };
 
   const runcode = () => {
     setiscoderunning(true);
     axios
       .post(`http://${IP ? IP : "localhost"}:${port}/runcode`, {
         code: code,
-        language: language,
+        language: prevlanguage,
       })
       .then((res) => {
         const { output } = res.data;
-        console.log(output);
-        setoutput(output);
-        setcodeoutput(output);
+
+        handleChangeCode(code, id, output);
+
         setiscoderunning(false);
       });
   };
@@ -67,12 +69,10 @@ const Codeeditor = ({
               "language_select rounded p-2 text-xs  font-bold cursor-pointer" +
               accent
             }
-            value={language}
+            value={prevlanguage}
             onChange={(e) => {
               console.log(e.target.value);
-              setlanguage(e.target.value);
-              setoutput("");
-              handleChangeCode(templates[e.target.value]);
+              changelanguage(e.target.value, id);
             }}
           >
             <option value="python">Python</option>
@@ -88,8 +88,8 @@ const Codeeditor = ({
             defaultLanguage={""}
             defaultValue={code}
             onChange={(e) => {
-              console.log(e);
-              handleChangeCode(e);
+              console.log(e, id);
+              handleChangeCode(e, id);
             }}
             theme={darkmode && "vs-dark"}
             value={code}
@@ -101,7 +101,7 @@ const Codeeditor = ({
       <div className="runner">
         <Coderunner
           accent={accent}
-          output={iscoderunning ? "Loading...." : output}
+          output={iscoderunning ? "Loading...." : prevoutput}
           runcode={runcode}
           handlesubmit={handlesubmit}
         />
