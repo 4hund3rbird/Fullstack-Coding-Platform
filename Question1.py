@@ -1,17 +1,19 @@
-'''Write a Python function that takes an integer as input and determines if it's even or odd. Return 'Even' if the number is even and 'Odd' if it's odd.'''
-def EvenorOdd(input):
+'''Write a Python function that takes a positive integer as input and checks if it's a prime number. Return True if the number is prime and False otherwise.'''
+def PrimeNumberCheck(input):
 	#write your code here and return the output
-	if input%2==0:
-		return 'even'
-	else :
-		return 'odd'
+
+
+
+
+
+
 
 
 
 #do not change this code
 if __name__=='__main__':
-	input=7
-	ans=EvenorOdd(input)
+	input=11
+	ans=PrimeNumberCheck(input)
 	print(ans)
 
-#outputodd
+#output

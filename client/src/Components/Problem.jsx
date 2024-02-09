@@ -12,7 +12,7 @@ const Problem = ({ darkmode, question }) => {
   }`;
 
   return (
-    <div className="flex-col h-full justify-center">
+    <div className="flex flex-col h-full justify-between">
       <h3 className={titles}>Problem Statement:</h3>
       <div className={show + "  h-[20vh]  "}>
         {`${question.title} : ${question.question}`}

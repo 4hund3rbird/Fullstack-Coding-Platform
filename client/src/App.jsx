@@ -8,8 +8,8 @@ import Navbar from "./Components/Navbar";
 import Login from "./Login";
 import Submitscreen from "./Components/Submitscreen";
 
-const IP_home = "192.168.52.205";
-const IP_office = "192.168.29.215";
+// const IP_home = "192.168.52.205";
+// const IP_office = "192.168.29.215";
 const IP = "";
 
 const App = () => {
@@ -29,15 +29,21 @@ const App = () => {
 
   console.log(code);
   const [darkmode, setdarkmode] = useState(function () {
-    return JSON.parse(localStorage.getItem("darkmode"));
+    if (JSON.parse(localStorage.getItem("darkmode"))) {
+      return JSON.parse(localStorage.getItem("darkmode"));
+    } else {
+      return false;
+    }
   });
 
   const [loggedin, isloggedin] = useState(function () {
     return JSON.parse(localStorage.getItem("login"));
   });
 
-  const [data, setdata] = useState({ fullname: "", email: "" });
-  const [submit, setsubmit] = useState(false);
+  // const [data, setdata] = useState({ fullname: "", email: "" });
+  const [submit, setsubmit] = useState(function () {
+    return JSON.parse(localStorage.getItem("submit"));
+  });
   const [qid, setqid] = useState(0);
   const [questions, setquestions] = useState([]);
   const [question, setquestion] = useState({});
@@ -93,11 +99,11 @@ const App = () => {
       });
   };
 
-  const handledata = (fullname, email) => {
-    setdata(() => {
-      return { fullname: fullname, email: email };
-    });
-  };
+  // const handledata = (fullname, email) => {
+  //   setdata(() => {
+  //     return { fullname: fullname, email: email };
+  //   });
+  // };
 
   const handleChangeCode = (code, id, output) => {
     setCode((codelist) => {
@@ -132,8 +138,8 @@ const App = () => {
   };
 
   const handlelogin = () => {
-    isloggedin(!loggedin);
-    localStorage.setItem("login", JSON.stringify(!loggedin));
+    isloggedin(true);
+    localStorage.setItem("login", JSON.stringify(true));
   };
   const accent_clr = `${darkmode ? " bg-emerald-400" : " bg-cyan-400"}`;
   const innerclass = `w-[50%] h-full p-4 rounded-md overflow-hidden ${
@@ -145,7 +151,7 @@ const App = () => {
         darkmode ? "bg-slate-800" : "bg-slate-400"
       }`}
     >
-      {!loggedin && <Login handlelogin={handlelogin} handledata={handledata} />}
+      {!loggedin && <Login handlelogin={handlelogin} />}
       {submit && <Submitscreen darkmode={darkmode} />}
 
       <div
@@ -160,6 +166,8 @@ const App = () => {
           setqid={setqid}
           setque={setquestion}
           questions={questions}
+          handlesubmit={handlesubmit}
+          login={loggedin}
         />
       </div>
       <div className={innerclass}>

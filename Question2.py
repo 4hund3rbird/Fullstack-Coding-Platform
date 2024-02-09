@@ -1,5 +1,5 @@
-'''Write a Python function that takes a string as input and counts the number of vowels in it. Consider both lowercase and uppercase vowels. Return the count as an integer.'''
-def CountVowels(input):
+'''Write a Python function that takes a string as input, reverses it, and returns the reversed string. Ensure your function handles strings with both lowercase and uppercase characters.'''
+def ReverseaString(input):
 	#write your code here and return the output
 
 
@@ -12,8 +12,8 @@ def CountVowels(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=Hello World
-	ans=CountVowels(input)
+	input=hello
+	ans=ReverseaString(input)
 	print(ans)
 
 #output

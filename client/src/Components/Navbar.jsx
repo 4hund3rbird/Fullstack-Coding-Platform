@@ -1,4 +1,14 @@
-const Navbar = ({ darkmode, questions, qid, setqid, setque }) => {
+import Timer from "./Timer";
+
+const Navbar = ({
+  darkmode,
+  questions,
+  qid,
+  setqid,
+  setque,
+  handlesubmit,
+  login,
+}) => {
   const selected_clr = `${
     darkmode ? " border-emerald-400" : " border-cyan-400"
   }`;
@@ -15,7 +25,7 @@ const Navbar = ({ darkmode, questions, qid, setqid, setque }) => {
         }`}
       />
       <div
-        className={`h-[80vh]  border-t-4 border-b-4 rounded-md overflow-scroll no-scrollbar flex flex-col justify-start  ${
+        className={`h-fit  border-t-4 border-b-4 rounded-md overflow-scroll no-scrollbar flex flex-col justify-start  ${
           !darkmode ? "border-cyan-400" : "border-emerald-400"
         }`}
       >
@@ -40,6 +50,7 @@ const Navbar = ({ darkmode, questions, qid, setqid, setque }) => {
           })}
         </ul>
       </div>
+      {login && <Timer darkmode={darkmode} handlesubmit={handlesubmit} />}
     </div>
   );
 };

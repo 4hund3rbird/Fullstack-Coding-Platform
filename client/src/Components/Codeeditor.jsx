@@ -4,6 +4,7 @@ import "../styles/Editor.css";
 import Coderunner from "./Coderunner";
 
 import { useState } from "react";
+import Progressbar from "./Progressbar";
 
 const Codeeditor = ({
   handleChangeCode,
@@ -22,8 +23,8 @@ const Codeeditor = ({
   const [iscoderunning, setiscoderunning] = useState(false);
 
   const port = "3000";
-  const IP_home = "192.168.52.205";
-  const IP_office = "192.168.29.215";
+  // const IP_home = "192.168.52.205";
+  // const IP_office = "192.168.29.215";
   const IP = "";
   // const templates = {
   //   python: 'print("Hello World")',
@@ -61,7 +62,9 @@ const Codeeditor = ({
           >
             {!darkmode ? "DarkMode" : "LightMode"}
           </button>
-
+          <div>
+            <Progressbar size={id} totalques={4} darkmode={darkmode} />
+          </div>
           {/* <button
             className={`rounded-lg py-2 px-6 text-xs font-bold cursor-default border-2 ${
               darkmode
