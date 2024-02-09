@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+var data = [];
 
 mongoose.connect(
   "mongodb+srv://user:user%40123@cluster0.cihedwg.mongodb.net/?retryWrites=true&w=majority",
@@ -18,5 +19,8 @@ const testschema = new Schema({
 });
 
 const userModel = mongoose.model("student", testschema);
-
-export { userModel };
+userModel.find().then((d) => {
+  console.log(d);
+  data = d;
+});
+export { userModel, data };

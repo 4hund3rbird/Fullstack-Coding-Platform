@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import questions from "./questions.js";
-import { userModel } from "./dbconnection.js";
+import { userModel, data } from "./dbconnection.js";
 import bodyParser from "body-parser";
 const port = process.env.PORT || 3000;
 import { exec } from "child_process";
@@ -19,6 +19,19 @@ app.listen(port, () => {
 
 app.get("/questions", (req, res) => {
   res.send(questions);
+});
+
+app.get("/alldata", (req, res) => {
+  let x = [];
+  for (let i of data) {
+    console.log(">>>>", i.ans);
+    let name = i.username;
+    let email = i.email;
+    let question_ans = JSON.parse(i.ans);
+    x.push({ name, email, question_ans });
+  }
+  console.log(x);
+  res.send(x);
 });
 
 app.get(`/random_questions/:no`, (req, res) => {

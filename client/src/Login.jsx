@@ -1,8 +1,12 @@
 import { useState } from "react";
 
 const Login = ({ handlelogin, handledata }) => {
-  const [fullname, setfullname] = useState("");
-  const [email, setemail] = useState("");
+  const [fullname, setfullname] = useState(function () {
+    return localStorage.getItem("fullname");
+  });
+  const [email, setemail] = useState(function () {
+    localStorage.getItem("email");
+  });
   const show =
     "p-3  rounded  text-white text-lg font-bold  bg-slate-600  my-2  m-auto ";
   return (
@@ -42,8 +46,12 @@ const Login = ({ handlelogin, handledata }) => {
         <div className="text-center h-20 ">
           <button
             onClick={() => {
-              handledata(fullname, email);
-              handlelogin();
+              if (fullname && email) {
+                handledata(fullname, email);
+                localStorage.setItem("fullname", fullname);
+                localStorage.setItem("email", email);
+                handlelogin();
+              }
             }}
             className="rounded-lg p-4 text-lg font-bold border-2   hover:-translate-y-1 transition-all ease-in-out duration-2 my-2  hover:bg-gradient-to-tr hover:bg-cyan-600 hover:border-2 hover:border-slate-100 text-white"
           >

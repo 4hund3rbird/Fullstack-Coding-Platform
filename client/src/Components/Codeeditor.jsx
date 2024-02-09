@@ -20,7 +20,9 @@ const Codeeditor = ({
   const [iscoderunning, setiscoderunning] = useState(false);
 
   const port = "3000";
-  const IP = "";
+  const IP_home = "192.168.52.205";
+  const IP_office = "192.168.29.215";
+  const IP = IP_office;
   // const templates = {
   //   python: 'print("Hello World")',
   //   javascript: 'console.log("Hello world");',

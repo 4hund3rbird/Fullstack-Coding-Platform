@@ -8,6 +8,10 @@ import Navbar from "./Components/Navbar";
 import Login from "./Login";
 import Submitscreen from "./Components/Submitscreen";
 
+const IP_home = "192.168.52.205";
+const IP_office = "192.168.29.215";
+const IP = IP_office;
+
 const App = () => {
   const no_of_questions = 3;
   const [code, setCode] = useState(function () {
@@ -40,7 +44,11 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/random_questions/${no_of_questions}`)
+      .get(
+        `http://${
+          IP ? IP : "localhost"
+        }:3000/random_questions/${no_of_questions}`
+      )
       .then((res) => {
         setquestions(res.data);
         setquestion(res.data[0]);
@@ -69,9 +77,9 @@ const App = () => {
     setsubmit(true);
     localStorage.setItem("submit", JSON.stringify(true));
     axios
-      .post("http://localhost:3000/submit", {
-        username: data.fullname,
-        email: data.email,
+      .post(`http://${IP ? IP : "localhost"}:3000/submit`, {
+        username: localStorage.getItem("fullname"),
+        email: localStorage.getItem("email"),
         tescase: true,
         code: code,
       })
