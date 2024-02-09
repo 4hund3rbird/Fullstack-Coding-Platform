@@ -16,13 +16,15 @@ const Codeeditor = ({
   id,
   prevoutput,
   prevlanguage,
+  sampleoutput,
+  sampleinput,
 }) => {
   const [iscoderunning, setiscoderunning] = useState(false);
 
   const port = "3000";
   const IP_home = "192.168.52.205";
   const IP_office = "192.168.29.215";
-  const IP = IP_office;
+  const IP = "";
   // const templates = {
   //   python: 'print("Hello World")',
   //   javascript: 'console.log("Hello world");',
@@ -59,6 +61,7 @@ const Codeeditor = ({
           >
             {!darkmode ? "DarkMode" : "LightMode"}
           </button>
+
           {/* <button
             className={`rounded-lg py-2 px-6 text-xs font-bold cursor-default border-2 ${
               darkmode
@@ -106,6 +109,9 @@ const Codeeditor = ({
           output={iscoderunning ? "Loading...." : prevoutput}
           runcode={runcode}
           handlesubmit={handlesubmit}
+          sampleoutput={sampleoutput}
+          sampleinput={sampleinput}
+          darkmode={darkmode}
         />
       </div>
     </div>

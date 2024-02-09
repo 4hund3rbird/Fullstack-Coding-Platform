@@ -10,17 +10,19 @@ import Submitscreen from "./Components/Submitscreen";
 
 const IP_home = "192.168.52.205";
 const IP_office = "192.168.29.215";
-const IP = IP_office;
+const IP = "";
 
 const App = () => {
-  const no_of_questions = 3;
+  const no_of_questions = 4;
   const [code, setCode] = useState(function () {
     return Array.from({ length: no_of_questions }, (e, i) => ({
       id: i,
       question: "",
       title: "",
-      code: `#Write code for question no ${i + 1}`,
+      code: `#Write code for question no ${i + 1} \n`,
       output: "",
+      sampleoutput: "",
+      sampleinput: "",
       language: "python",
     }));
   });
@@ -35,9 +37,7 @@ const App = () => {
   });
 
   const [data, setdata] = useState({ fullname: "", email: "" });
-  const [submit, setsubmit] = useState(function () {
-    return JSON.parse(localStorage.getItem("submit"));
-  });
+  const [submit, setsubmit] = useState(false);
   const [qid, setqid] = useState(0);
   const [questions, setquestions] = useState([]);
   const [question, setquestion] = useState({});
@@ -55,10 +55,15 @@ const App = () => {
         console.log(res.data);
         setCode((l) => {
           return l.map((e, i) => {
+            const x = res.data[i].title.split(" ");
+            const name = x.reduce((a, b) => a + b);
             return {
               ...e,
               question: res.data[i].question,
               title: res.data[i].title,
+              code: `def ${name}(input):\n\t#write your code here and return the output\n\n\n\n\n\n\n\n\n\n#do not change this code\nif __name__=='__main__':\n\tinput=${res.data[i].sample_input}\n\tans=${name}(input)\n\tprint(ans)`,
+              sampleoutput: res.data[i].sample_output,
+              sampleinput: res.data[i].sample_input,
             };
           });
         });
@@ -164,6 +169,7 @@ const App = () => {
         <Codeeditor
           accent={accent_clr}
           code={code[qid].code}
+          sampleoutput={code[qid].sampleoutput}
           prevoutput={code[qid].output}
           id={qid}
           handleChangeCode={handleChangeCode}
@@ -172,6 +178,7 @@ const App = () => {
           handlesubmit={handlesubmit}
           prevlanguage={code[qid].language}
           changelanguage={handlelanguagechange}
+          sampleinput={code[qid].sampleinput}
         />
       </div>
     </div>

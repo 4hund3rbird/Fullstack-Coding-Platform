@@ -23,7 +23,7 @@ const pythonCodingQuestions = [
     title: "Reverse a String",
     question:
       "Write a Python function that takes a string as input, reverses it, and returns the reversed string. Ensure your function handles strings with both lowercase and uppercase characters.",
-    sample_input: "hello",
+    sample_input: "'hello'",
     sample_output: "'olleh'",
     code: "def reverse_string(s):\n    return s[::-1]",
     explanation:
@@ -43,7 +43,7 @@ const pythonCodingQuestions = [
     title: "Palindrome Check",
     question:
       "Write a Python function that checks if a given string is a palindrome. Ignore spaces, consider case-insensitive, and handle alphanumeric characters. Return True if the string is a palindrome, and False otherwise.",
-    sample_input: "A man a plan a canal Panama",
+    sample_input: "'A man a plan a canal Panama'",
     sample_output: "True",
     code: "def is_palindrome(s):\n    s = ''.join(char.lower() for char in s if char.isalnum())\n    return s == s[::-1]",
     explanation:
@@ -63,7 +63,7 @@ const pythonCodingQuestions = [
     title: "Count Vowels",
     question:
       "Write a Python function that takes a string as input and counts the number of vowels in it. Consider both lowercase and uppercase vowels. Return the count as an integer.",
-    sample_input: "Hello World",
+    sample_input: "'Hello World'",
     sample_output: "3",
     code: "def count_vowels(s):\n    return sum(1 for char in s if char.lower() in 'aeiou')",
     explanation:

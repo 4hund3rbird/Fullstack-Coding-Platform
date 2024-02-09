@@ -1,11 +1,10 @@
 import express from "express";
 import cors from "cors";
 import questions from "./questions.js";
-import { userModel, data } from "./dbconnection.js";
 import bodyParser from "body-parser";
 const port = process.env.PORT || 3000;
 import { exec } from "child_process";
-
+import * as fs from "fs";
 import { filepath, filewrite } from "./fileutilities.js";
 
 const app = express();
@@ -19,19 +18,6 @@ app.listen(port, () => {
 
 app.get("/questions", (req, res) => {
   res.send(questions);
-});
-
-app.get("/alldata", (req, res) => {
-  let x = [];
-  for (let i of data) {
-    console.log(">>>>", i.ans);
-    let name = i.username;
-    let email = i.email;
-    let question_ans = JSON.parse(i.ans);
-    x.push({ name, email, question_ans });
-  }
-  console.log(x);
-  res.send(x);
 });
 
 app.get(`/random_questions/:no`, (req, res) => {
@@ -50,21 +36,13 @@ app.get(`/random_questions/:no`, (req, res) => {
 app.post("/submit", (req, res) => {
   const { username, email, testcase, code, output } = req.body;
   const ans = JSON.stringify(code);
-  console.log(ans);
-  const data = new userModel({
-    username: username,
-    email: email,
-    ans: ans,
-  });
-  console.log(data);
-  data
-    .save()
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  for (let i in code) {
+    fs.writeFileSync(
+      `../Question${i}.py`,
+      `'''${code[i].question}'''\n${code[i].code}\n\n#output --> \n\n'''${code[i].output}'''`
+    );
+  }
+  fs.writeFileSync(`../${username}.js`, `//${username}\n//${email}\n${ans}`);
 });
 
 app.post("/runcode", (req, res) => {
