@@ -1,5 +1,5 @@
-'''Write a Python function that takes a positive integer as input and checks if it's a prime number. Return True if the number is prime and False otherwise.'''
-def PrimeNumberCheck(input):
+'''Write a Python function that takes two numbers as input, calculates their sum, and returns the result. Ensure your function handles both positive and negative numbers.'''
+def SumofTwoNumbers(input):
 	#write your code here and return the output
 
 
@@ -12,8 +12,10 @@ def PrimeNumberCheck(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=11
-	ans=PrimeNumberCheck(input)
+	input=3, 5
+	ans=SumofTwoNumbers(input)
 	print(ans)
 
-#output
+#output --> 
+
+''''''

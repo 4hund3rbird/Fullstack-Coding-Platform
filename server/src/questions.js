@@ -24,7 +24,7 @@ const pythonCodingQuestions = [
     question:
       "Write a Python function that takes a string as input, reverses it, and returns the reversed string. Ensure your function handles strings with both lowercase and uppercase characters.",
     sample_input: "'hello'",
-    sample_output: "'olleh'",
+    sample_output: "olleh",
     code: "def reverse_string(s):\n    return s[::-1]",
     explanation:
       "This problem tests string manipulation skills. Use slicing to reverse the string by specifying a step of -1 in the slice. Make sure to handle both lowercase and uppercase characters.",
@@ -84,7 +84,7 @@ const pythonCodingQuestions = [
     question:
       "Write a Python function that takes an integer as input and determines if it's even or odd. Return 'Even' if the number is even and 'Odd' if it's odd.",
     sample_input: "7",
-    sample_output: "'Odd'",
+    sample_output: "Odd",
     code: "def check_even_or_odd(num):\n    return 'Even' if num % 2 == 0 else 'Odd'",
     explanation:
       "This problem checks understanding of conditional statements and modulus operator. Use the '%' operator to check if the number is divisible by 2.",

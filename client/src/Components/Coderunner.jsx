@@ -11,8 +11,8 @@ const Coderunner = ({
     darkmode ? "bg-slate-700 text-white" : "bg-slate-300 text-black"
   }`;
   return (
-    <div className="h-[46vh] overflow-hidden">
-      <div className="flex justify-end gap-4 my-3">
+    <div className="h-[50vh] overflow-hidden">
+      <div className="flex justify-end gap-4 my-2">
         {/* <button className={"rounded p-2 text-xs font-bold" + accent}>
           Run Testcases
         </button> */}
@@ -36,7 +36,7 @@ const Coderunner = ({
 
       <div
         className={
-          "output my-2  rounded-md text-xl font-bold p-6  overflow-y-scroll no-scrollbar " +
+          "output my-2 h-[40vh] rounded-md text-xl font-bold p-6  overflow-y-scroll no-scrollbar " +
           `${
             darkmode
               ? "bg-slate-600 text-neutral-100"

@@ -1,5 +1,5 @@
-'''Write a Python function that takes a string as input, reverses it, and returns the reversed string. Ensure your function handles strings with both lowercase and uppercase characters.'''
-def ReverseaString(input):
+'''Write a Python function that takes a positive integer as input and checks if it's a prime number. Return True if the number is prime and False otherwise.'''
+def PrimeNumberCheck(input):
 	#write your code here and return the output
 
 
@@ -12,8 +12,10 @@ def ReverseaString(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=hello
-	ans=ReverseaString(input)
+	input=11
+	ans=PrimeNumberCheck(input)
 	print(ans)
 
-#output
+#output --> 
+
+''''''

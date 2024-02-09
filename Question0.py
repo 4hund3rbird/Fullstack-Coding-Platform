@@ -1,5 +1,5 @@
-'''Write a Python function that takes two numbers as input, calculates their sum, and returns the result. Ensure your function handles both positive and negative numbers.'''
-def SumofTwoNumbers(input):
+'''Write a Python function that takes a string as input and counts the number of vowels in it. Consider both lowercase and uppercase vowels. Return the count as an integer.'''
+def CountVowels(input):
 	#write your code here and return the output
 
 
@@ -12,11 +12,10 @@ def SumofTwoNumbers(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=3, 5
-	ans=SumofTwoNumbers(input)
+	input=Hello World
+	ans=CountVowels(input)
 	print(ans)
 
-#output  File "D:\work\Fullstack-Coding-Platform\server\Temp\temp.py", line 13
-    if __name__=='__main__':
-    ^
-IndentationError: expected an indented block after function definition on line 1
+#output --> 
+
+''''''
