@@ -1,6 +1,6 @@
-def EvenorOdd(input):
+def ListMaxElement(input):
 	#write your code here and return the output
-	return 0
+	return max(input)
 
 
 
@@ -11,6 +11,6 @@ def EvenorOdd(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=7
-	ans=EvenorOdd(input)
+	input=[4, 7, 1, 9, 3]
+	ans=ListMaxElement(input)
 	print(ans)

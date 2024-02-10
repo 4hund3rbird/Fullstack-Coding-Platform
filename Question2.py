@@ -1,6 +1,10 @@
-'''Write a Python function that takes a positive integer as input and checks if it's a prime number. Return True if the number is prime and False otherwise.'''
-def PrimeNumberCheck(input):
+'''Write a Python function to calculate the factorial of a given non-negative integer. Ensure your function handles edge cases such as 0 and 1.'''
+def Factorial(input):
 	#write your code here and return the output
+	fact = 1
+	for i in range(input,0,-1):
+		fact = fact * i
+	return fact
 
 
 
@@ -12,10 +16,11 @@ def PrimeNumberCheck(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=11
-	ans=PrimeNumberCheck(input)
+	input=5
+	ans=Factorial(input)
 	print(ans)
 
 #output --> 
 
-''''''
+'''120
+'''

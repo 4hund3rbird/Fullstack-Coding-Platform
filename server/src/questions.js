@@ -1,13 +1,12 @@
 const pythonCodingQuestions = [
   {
-    title: "Sum of Two Numbers",
-    question:
-      "Write a Python function that takes two numbers as input, calculates their sum, and returns the result. Ensure your function handles both positive and negative numbers.",
-    sample_input: "3, 5",
-    sample_output: "8",
-    code: "def sum_of_two_numbers(a, b):\n    return a + b",
+    title: "Prime Numbers up to N",
+    question: "Return a list of prime numbers upto the given input.",
+    sample_input: "10",
+    sample_output: "[2, 3, 5, 7]",
+    code: "",
     explanation:
-      "This problem tests basic arithmetic operations in Python. To solve it, use the '+' operator to add the two numbers together. Make sure to consider positive and negative inputs.",
+      "Use iterations to return the prime numbers till a certain range",
   },
   {
     title: "Factorial",
