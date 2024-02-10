@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-const min = 10;
+const min = 40;
 const time = 60 * min;
 const Timer = ({ darkmode, handlesubmit }) => {
   const [secs, updatesecs] = useState(time);

@@ -25,7 +25,7 @@ const Navbar = ({
         }`}
       />
       <div
-        className={`h-fit  border-t-4 border-b-4 rounded-md overflow-scroll no-scrollbar flex flex-col justify-start  ${
+        className={`h-[60vh]  border-t-4 border-b-4 rounded-md overflow-y-scroll no-scrollbar flex flex-col justify-start  ${
           !darkmode ? "border-cyan-400" : "border-emerald-400"
         }`}
       >

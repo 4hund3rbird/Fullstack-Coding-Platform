@@ -63,7 +63,7 @@ const Codeeditor = ({
             {!darkmode ? "DarkMode" : "LightMode"}
           </button>
           <div>
-            <Progressbar size={id} totalques={4} darkmode={darkmode} />
+            <Progressbar size={id} totalques={9} darkmode={darkmode} />
           </div>
           {/* <button
             className={`rounded-lg py-2 px-6 text-xs font-bold cursor-default border-2 ${

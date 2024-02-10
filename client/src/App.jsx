@@ -13,7 +13,7 @@ import Submitscreen from "./Components/Submitscreen";
 const IP = "";
 
 const App = () => {
-  const no_of_questions = 4;
+  const no_of_questions = 9;
   const [code, setCode] = useState(function () {
     return Array.from({ length: no_of_questions }, (e, i) => ({
       id: i,
