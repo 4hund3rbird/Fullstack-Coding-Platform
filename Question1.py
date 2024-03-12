@@ -1,12 +1,6 @@
-'''Write a Python function that takes a string as input and counts the number of vowels in it. Consider both lowercase and uppercase vowels. Return the count as an integer.'''
-def CountVowels(input):
+'''Return a list of prime numbers upto the given input.'''
+def PrimeNumbersuptoN(input):
 	#write your code here and return the output
-	vovels = ["a","e","i","o","u"]
-	count = 0
-	for i in input:
-		if i in vovels:
-			count += 1
-	return count
 
 
 
@@ -18,11 +12,10 @@ def CountVowels(input):
 
 #do not change this code
 if __name__=='__main__':
-	input='Hello World'
-	ans=CountVowels(input)
+	input=10
+	ans=PrimeNumbersuptoN(input)
 	print(ans)
 
 #output --> 
 
-'''3
-'''
+''''''

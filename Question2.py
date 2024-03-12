@@ -1,10 +1,6 @@
-'''Write a Python function to calculate the factorial of a given non-negative integer. Ensure your function handles edge cases such as 0 and 1.'''
-def Factorial(input):
+'''Write a Python function that checks if a given string is a palindrome. Ignore spaces, consider case-insensitive, and handle alphanumeric characters. Return True if the string is a palindrome, and False otherwise.'''
+def PalindromeCheck(input):
 	#write your code here and return the output
-	fact = 1
-	for i in range(input,0,-1):
-		fact = fact * i
-	return fact
 
 
 
@@ -16,11 +12,10 @@ def Factorial(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=5
-	ans=Factorial(input)
+	input='A man a plan a canal Panama'
+	ans=PalindromeCheck(input)
 	print(ans)
 
 #output --> 
 
-'''120
-'''
+''''''

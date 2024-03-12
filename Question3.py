@@ -1,7 +1,7 @@
-'''Write a Python function that takes a list of numbers as input, finds the maximum element, and returns it. Ensure your function handles lists with both positive and negative numbers.'''
-def ListMaxElement(input):
+'''Write a Python function that takes a string as input and counts the number of vowels in it. Consider both lowercase and uppercase vowels. Return the count as an integer.'''
+def CountVowels(input):
 	#write your code here and return the output
-	return max(input)
+
 
 
 
@@ -12,11 +12,10 @@ def ListMaxElement(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=[4, 7, 1, 9, 3]
-	ans=ListMaxElement(input)
+	input='Hello World'
+	ans=CountVowels(input)
 	print(ans)
 
 #output --> 
 
-'''9
-'''
+''''''

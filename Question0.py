@@ -1,8 +1,6 @@
-'''Write a Python function that takes a list of numbers as input, removes duplicate elements, and returns a new list without duplicates.'''
-def DuplicateElements(input):
+'''Write a Python function that takes a positive integer as input and checks if it's a prime number. Return True if the number is prime and False otherwise.'''
+def PrimeNumberCheck(input):
 	#write your code here and return the output
-	return list(set(input))
-	
 
 
 
@@ -14,11 +12,10 @@ def DuplicateElements(input):
 
 #do not change this code
 if __name__=='__main__':
-	input=[1, 2, 3, 2, 4, 5, 3]
-	ans=DuplicateElements(input)
+	input=11
+	ans=PrimeNumberCheck(input)
 	print(ans)
 
 #output --> 
 
-'''[1, 2, 3, 4, 5]
-'''
+''''''
